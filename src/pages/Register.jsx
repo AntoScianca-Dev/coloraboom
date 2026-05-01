@@ -12,7 +12,7 @@ export default function Register() {
     e.preventDefault()
 
     const { error } = await supabase.from('iscrizioni').insert([form])
-
+    console.log(await supabase.auth.getSession())
     if (error) alert(error.message)
     else alert('Iscrizione completata!')
   }

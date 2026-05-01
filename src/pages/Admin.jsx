@@ -4,11 +4,25 @@ import jsPDF from 'jspdf'
 import Papa from 'papaparse'
 
 export default function Admin() {
+  // const [data, setData] = useState([])
+
+  const logout = async () => {
+    await supabase.auth.signOut()
+    window.location.href = '/'
+  }
   const [data, setData] = useState([])
 
   useEffect(() => {
+    checkUser()
     fetchData()
   }, [])
+
+  const checkUser = async () => {
+    const { data } = await supabase.auth.getSession()
+    if (!data.session) {
+      window.location.href = '/login'
+    }
+  }
 
   const fetchData = async () => {
     const { data } = await supabase.from('iscrizioni').select('*')
@@ -39,6 +53,7 @@ export default function Admin() {
   return (
     <div style={{ padding: 20 }}>
       <h2>Admin Dashboard</h2>
+      <button onClick={logout}>Logout</button>
 
       <button onClick={exportCSV}>Export CSV</button>
       <button onClick={exportPDF}>Export PDF</button>
