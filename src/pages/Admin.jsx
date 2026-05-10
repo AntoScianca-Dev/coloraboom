@@ -51,18 +51,20 @@ export default function Admin() {
   }
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Admin Dashboard</h2>
-      <button onClick={logout}>Logout</button>
+    <>
+      <div style={{ padding: 20 }}>
+        <h2>Admin Dashboard</h2>
+        <button onClick={logout}>Logout</button>
 
-      <button onClick={exportCSV}>Export CSV</button>
-      <button onClick={exportPDF}>Export PDF</button>
+        <button onClick={exportCSV}>Export CSV</button>
+        <button onClick={exportPDF}>Export PDF</button>
 
-      <ul>
-        {data?.map((d) => (
-          <li key={d.id}>{d.nome} {d.cognome}</li>
-        ))}
-      </ul>
-    </div>
+        <ul>
+          {data?.map((d) => (
+            <li key={d.id}>{d.nome} {d.cognome}</li>
+          ))}
+        </ul>
+      </div>
+    </>
   )
 }

@@ -15,11 +15,13 @@ export default function Login() {
   }
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Login Admin</h2>
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
-    </div>
+    <>
+      <div style={{ padding: 20 }}>
+        <h2>Login Admin</h2>
+        <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+        <button onClick={handleLogin}>Login</button>
+      </div>
+    </>
   )
 }
