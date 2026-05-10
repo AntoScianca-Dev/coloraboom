@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const links = [
     { label: "Home",  href: '/'    },
-    { label: 'Notizie',  href: '/admin'  },
-    { label: 'Sponsor',   href: '/login'   },
+    { label: 'Info',  href: '/info'  },
+    { label: 'Sponsor',   href: '/sponsor'   },
+    { label: 'Contatti',   href: '/contatti'   },
 ];
 
 export default function Navbar() {
@@ -59,39 +62,25 @@ export default function Navbar() {
                     {/* ── LOGO ── */}
                     <NavLink
                         to="/"
-                        className="flex items-center gap-2 group select-none"
+                        className="flex items-center gap-2 group select-none tracking-tight"
                         aria-label="ColoraBoom home"
                     >
                         <span className="text-2xl transition-transform duration-300 group-hover:rotate-12">🎨</span>
                         <span
-                        className="font-['Baloo_2'] font-extrabold text-[1.55rem] leading-none tracking-tight text-[#2D2D2D]"
+                        className="font-['Baloo_2'] font-extrabold text-[1.55rem] leading-none tracking-tight text-orange-500"
                         style={{ letterSpacing: '-0.04em' }}
                         >
                         Colora
-                        <span className="text-[#FF6B35] transition-colors duration-200 group-hover:text-[#FF4D8D]">
-                            Boom!
-                        </span>
+                            <span className="text-pink-500 transition-colors duration-200">
+                                Boom
+                            </span>
+                            <span className="text-gray-600">!</span>
                         </span>
                     </NavLink>
 
                     {/* ── DESKTOP LINKS ── */}
                     <div className="hidden md:flex items-center gap-1">
                         {links.map(({ label, href }) => (
-                            /*
-                        <a
-                            key={href}
-                            href={href}
-                            onClick={(e) => handleAnchorClick(e, href)}
-                            className="
-                            font-['Nunito'] font-bold text-[0.88rem] tracking-wide
-                            text-[#888] px-4 py-2 rounded-full
-                            hover:bg-orange-50 hover:text-[#FF6B35]
-                            transition-all duration-200
-                            "
-                        >
-                            {label}
-                        </a>
-                        */
                             <NavLink
                                 to={href}
                                 className={({ isActive }) => `
@@ -122,7 +111,10 @@ export default function Navbar() {
                             whitespace-nowrap
                         "
                         >
-                        Iscriviti 🚀
+                            <span className="flex">
+                                <FontAwesomeIcon icon={faPen} className="text-xl pr-3" />
+                                Iscriviti
+                            </span>
                         </a>
                     </div>
 

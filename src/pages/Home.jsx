@@ -80,8 +80,8 @@ export default function Home() {
       <section className="mb-5 flex justify-center scale-120">
         {/* CTA */}
         <a
-        href="/register"
-        onClick={(e) => handleAnchorClick(e, '/register')}
+        href="/info"
+        onClick={(e) => handleAnchorClick(e, '/info')}
         className="
             ml-2 font-['Nunito'] font-extrabold text-[0.88rem]
             text-white px-5 py-[9px] rounded-full
@@ -125,9 +125,6 @@ export default function Home() {
       <section>
         <SponsorCarousel></SponsorCarousel>
       </section>
-
-
-          <script src="https://kit.fontawesome.com/0ee0f719c4.js" crossorigin="anonymous"></script>
     </div>
   )
 }
