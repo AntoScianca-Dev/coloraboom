@@ -1,4 +1,4 @@
-import SponsorCarousel from "../components/Sponsorcarusel"
+import SponsorCarousel from "../components/SponsorCarusel"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo, faPen } from '@fortawesome/free-solid-svg-icons';
 
