@@ -1,25 +1,9 @@
 import { useState } from 'react'
 import { supabase } from '../supabaseClient'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 export default function Register() {
-  /*
-  const [form, setForm] = useState({})
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    const { error } = await supabase.from('iscrizioni').insert([form])
-    console.log(await supabase.auth.getSession())
-    if (error) alert(error.message)
-    else alert('Iscrizione completata!')
-  }
-
-
-  */
   const [form, setForm] = useState({})
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -27,11 +11,15 @@ export default function Register() {
 
   const validate = () => {
     const err = {}
-    if (!form.nome) err.nome = 'Richiesto'
-    if (!form.cognome) err.cognome = 'Richiesto'
-    if (!form.email) err.email = 'Richiesto'
-    if (!form.telefono) err.telefono = 'Richiesto'
+    if (!form.nome_bambino) err.nome_bambino = 'Richiesto'
+    if (!form.cognome_bambino) err.cognome_bambino = 'Richiesto'
     if (!form.eta_bambino) err.eta_bambino = 'Richiesto'
+    if (!form.evento) err.evento = 'Richiesto'
+    if (!form.nome_genitore) err.nome_genitore = 'Richiesto'
+    if (!form.cognome_genitore) err.cognome_genitore = 'Richiesto'
+    if (!form.telefono) err.telefono = 'Richiesto'
+    if (!form.email) err.email = 'Richiesto'
+    if (!form.privacy) err.privacy = 'Richiesto'
     return err
   }
 
@@ -59,76 +47,148 @@ export default function Register() {
       alert(error.message)
     } else {
       setSuccess(true)
+
+      setTimeout(() => {
+        setSuccess(false)
+        setForm({})
+        setErrors({})
+      }, 10000)
     }
   }
 
 
   return (
     <>
-      <form onSubmit={handleSubmit} style={{ padding: 20 }}>
-        <h2>Iscrizione</h2>
-        <input name="nome" placeholder="Nome" onChange={handleChange} required />
-        <input name="cognome" placeholder="Cognome" onChange={handleChange} required />
-        <input name="email" placeholder="Email" onChange={handleChange} required />
-        <input name="telefono" placeholder="Telefono" onChange={handleChange} />
-        <input name="eta_bambino" placeholder="Età bambino" onChange={handleChange} />
-        <button type="submit">Invia</button>
-      </form>
-
+      <h2 className=' text-3xl font-baloo font-bold text-center text-gray-600 mt-10 pb-3'>
+      <FontAwesomeIcon icon={faPenToSquare} className='text-orange-500 pr-2'></FontAwesomeIcon>
+      Iscriviti ora!</h2>
       
       {/* FORM */}
-      <section className="max-w-xl mx-auto px-4 pb-20">
-        <div className="bg-white p-8 rounded-3xl shadow" data-aos="fade-up">
+      <section className="max-w-5xl mx-auto px-4 pb-20">
+        {!success ? (
+          <div className="bg-orange-100 p-8 rounded-3xl shadow shadow-amber-200" data-aos="fade-up">
+            <h2 className='font-baloo text-2xl pb-5'>Compila il modulo</h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <section className='shadow p-5 rounded-2xl shadow-gray-800'>
+                  <h3 className='font-sans text-2xl [font-variant:small-caps] text-gray-500 text-center pb-3'> Dati Bambino</h3>
+                  <div className='grid md:grid-cols-2 gap-3 '>
+                    <div>
+                      <label className="text-gray-400 [font-variant:small-caps]" htmlFor="nome_bambino">Nome *</label>
+                      <input id='nome_bambino' type="text" name="nome_bambino" placeholder="Es. Sofia"
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-xl bg-amber-50 h-12"
+                        required
+                      />
+                      {errors.nome_bambino && <p className="text-red-500 text-sm">{errors.nome_bambino}</p>}
+                    </div>
 
-          {!success ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label className="text-gray-400 [font-variant:small-caps]" htmlFor="cognome_bambino">Cognome *</label>
+                      <input id='cognome_bambino' type="text" name="cognome_bambino" placeholder="Es. Rossi"
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-xl bg-amber-50 h-12"
+                        required
+                      />
+                      {errors.cognome_bambino && <p className="text-red-500 text-sm">{errors.cognome_bambino}</p>}
+                    </div>
 
-              <input name="nome" placeholder="Nome bambino"
-                onChange={handleChange}
-                className="w-full p-3 border rounded-xl"
-              />
-              {errors.nome && <p className="text-red-500 text-sm">{errors.nome}</p>}
+                    <div>
+                      <label className="text-gray-400 [font-variant:small-caps]" htmlFor="eta_bambino">Età *</label>
+                      <input id='eta_bambino' type="numeric" name="eta_bambino" placeholder="Es. 3"
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-xl bg-amber-50 h-12"
+                        required
+                      />
+                      {errors.eta_bambino && <p className="text-red-500 text-sm">{errors.eta_bambino}</p>}
+                    </div>
 
-              <input name="cognome" placeholder="Cognome"
-                onChange={handleChange}
-                className="w-full p-3 border rounded-xl"
-              />
+                    <div>
+                      <label className="text-gray-400 [font-variant:small-caps]" htmlFor="cognome_bambino">Evento *</label>
+                      <select className="w-full p-3 border rounded-xl bg-amber-50 h-12" id="evento" name="evento" onChange={handleChange} required>
+                        <option value="">Seleziona evento</option>
+                        <option>Mattino</option>
+                        <option>Pomeriggio</option>
+                        <option>Entrambi</option>
+                      </select>
+                      {errors.evento && <p className="text-red-500 text-sm">{errors.evento}</p>}
+                    </div>
+                  </div>
+                </section>
 
-              <input name="telefono" placeholder="Telefono"
-                onChange={handleChange}
-                className="w-full p-3 border rounded-xl"
-              />
+                <section className='shadow p-5 rounded-2xl shadow-gray-800'>
+                  <h3 className='font-sans text-2xl [font-variant:small-caps] text-gray-500 text-center pb-3'> Dati Genitore/Tutore</h3>
+                  <div className='grid md:grid-cols-2 gap-3 '>
+                    <div>
+                      <label className="text-gray-400 [font-variant:small-caps]" htmlFor="nome_genitore">Nome *</label>
+                      <input id='nome_genitore' type="text" name="nome_genitore" placeholder="Es. Maria"
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-xl bg-amber-50 h-12"
+                        required
+                      />
+                      {errors.nome_genitore && <p className="text-red-500 text-sm">{errors.nome_genitore}</p>}
+                    </div>
 
-              <input name="eta_bambino" placeholder="3" type='numeric'
-                onChange={handleChange}
-                className="w-full p-3 border rounded-xl"
-              />
+                    <div>
+                      <label className="text-gray-400 [font-variant:small-caps]" htmlFor="cognome_genitore">Cognome *</label>
+                      <input id='cognome_genitore' type="text" name="cognome_genitore" placeholder="Es. Bianchi"
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-xl bg-amber-50 h-12"
+                        required
+                      />
+                      {errors.cognome_genitore && <p className="text-red-500 text-sm">{errors.cognome_genitore}</p>}
+                    </div>
 
-              <input name="email" placeholder="Email" type='email'
-                onChange={handleChange}
-                className="w-full p-3 border rounded-xl"
-              />
+                    <div>
+                      <label className="text-gray-400 [font-variant:small-caps]" htmlFor="telefono">Telefono *</label>
+                      <input id="telefono" type="tel" name="telefono" placeholder="Es. 333 1234567" 
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-xl bg-amber-50 h-12"
+                        required
+                      />
+                    </div>
 
-              <label className="flex gap-2">
-                <input type="checkbox" name="privacy" onChange={handleChange} />
-                Accetto privacy
-              </label>
+                    <div>
+                      <label className="text-gray-400 [font-variant:small-caps]" htmlFor="email">Email *</label>
+                      <input id="email" type="email" name="email" placeholder="Es. lamiamail@email.it" 
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-xl bg-amber-50 h-12"
+                        required
+                      />
+                    </div>
+                  </div>
+                </section>
 
-              <button
-                disabled={loading}
-                className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white p-4 rounded-xl font-bold"
-              >
-                {loading ? 'Invio...' : 'Iscriviti 🎨'}
-              </button>
+                <section className='shadow py-5 px-15 rounded-2xl shadow-gray-800 flex gap-5'>
+                  <input className='scale-200' type="checkbox" name="privacy" onChange={handleChange} />
+                  <label className="flex gap-2 text-gray-600 font-sans" htmlFor="privacy">
+                      Acconsento al trattamento dei dati personali ai sensi del GDPR per la gestione
+                      dell'iscrizione a ColoraBoom! I dati non saranno ceduti a terzi.
+                  </label>
+                </section>
 
-            </form>
-          ) : (
-            <div className="text-center">
-              <h2 className="text-2xl text-green-500 font-bold">🎉 Iscrizione completata!</h2>
-            </div>
-          )}
-
-        </div>
+                <div className='flex justify-center'>
+                  <button
+                    disabled={loading}
+                    className="font-extrabold text-xl
+                      text-white px-10 py-3 rounded-full
+                      bg-gradient-to-r from-[#FF6B35] to-[#FF4D8D]
+                      shadow-[0_2px_2px_rgba(255,107,53,0.35)]
+                      hover:shadow-[0_4px_4px_rgba(255,107,53,0.45)]
+                      hover:-translate-y-0.5
+                      transition-all duration-200
+                      whitespace-nowrap"
+                  >
+                    {loading ? 'Invio...' : 'Iscriviti'}
+                  </button>
+                </div>
+              </form>
+          </div>
+        ) : (
+          <div class="shadow py-5 px-15 rounded-2xl shadow-gray-800 flex flex-col gap-5" id="successMsg">
+            <h3 className='text-green-400 font-baloo font-bold text-2xl text-shadow-2xs'>Iscrizione ricevuta!</h3>
+            <p className='text-xl'>Ci vediamo a settembre per un'esperienza indimenticabile.</p>
+          </div>
+        )}
       </section>
     </>
   )

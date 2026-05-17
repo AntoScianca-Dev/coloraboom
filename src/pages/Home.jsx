@@ -1,6 +1,7 @@
 import SponsorCarousel from "../components/SponsorCarusel"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays, faCircleInfo, faClock, faFootball, faListCheck, faMapPin, faMusic, faPen, faPenFancy } from '@fortawesome/free-solid-svg-icons';
+import { faPaintbrush } from "@fortawesome/free-solid-svg-icons/faPaintbrush";
 
 export default function Home() {
 
@@ -16,7 +17,7 @@ export default function Home() {
       {/* HEADER */}
       <header className="text-center py-20 px-4" data-aos="fade-up">
         <div className="bg-orange-500 text-white px-4 py-1 rounded-full inline-block text-sm font-bold mb-4">
-          🎨 Settembre 2025 · 5-12 anni
+          🎨 Settembre 2026 
         </div>
 
         <h1 className="text-6xl font-extrabold tracking-tight">
@@ -26,22 +27,20 @@ export default function Home() {
         </h1>
 
         <p className="mt-4 text-lg text-gray-600">
-          Il laboratorio creativo dove ogni bambino diventa artista 🖌️
+          Il laboratorio creativo dove ogni bambino diventa artista 
+          <FontAwesomeIcon icon={faPenFancy} className="text-orange-600 text-lg ps-1"></FontAwesomeIcon>
         </p>
-
-        <div className="text-2xl mt-2">⭐🌈✨🎭🌟</div>
       </header>
 
       {/* INFO */}
       <div className="flex flex-wrap justify-center gap-4 px-4 mb-16">
         {[
-          { icon: '📅', text: '13–14 Settembre' },
-          { icon: '🕙', text: '9:00 – 17:00' },
-          { icon: '📍', text: 'Via Roma 12' },
-          { icon: '👧', text: '5 – 12 anni' }
+          { icon: faCalendarDays, text: '13–14 Settembre', color: 'text-orange-300', bgColor: 'border-orange-300' },
+          { icon: faClock, text: '9:00 – 17:00', color: 'text-pink-400', bgColor: 'border-pink-400'},
+          { icon: faMapPin, text: 'Corso Dante, Molfetta', color: 'text-teal-400', bgColor: 'border-teal-400'}
         ].map((item, i) => (
-          <div key={i} data-aos="fade-up" className="bg-white px-6 py-4 rounded-2xl shadow hover:scale-105 transition">
-            <div className="text-xl">{item.icon}</div>
+          <div key={i} data-aos="fade-up" className={`bg-white border-t-4 ${item.bgColor} px-6 py-4 mx-3 rounded-2xl shadow flex flex-col items-center hover:scale-105 transition `}>
+            <FontAwesomeIcon icon={item.icon} className={`text-2xl ${item.color} pt-1 pb-3`}></FontAwesomeIcon>
             <div className="font-bold">{item.text}</div>
           </div>
         ))}
@@ -51,27 +50,31 @@ export default function Home() {
       <section className="max-w-3xl mx-auto px-4 mb-20" data-aos="fade-up">
         <div className="bg-white p-8 rounded-3xl shadow">
           <p>
-            Benvenuti a <strong className="text-orange-500">ColoraBoom!</strong> 🎨
-            Due giorni di attività creative per bambini dai 5 ai 12 anni.
+            Benvenuti a <strong className="text-orange-500">Colora<span className="text-pink-500">Boom</span><span className="text-gray-500">! </span></strong>
+            Un giorno di attività creative per bambini.
           </p>
         </div>
       </section>
 
       {/* ATTIVITÀ */}
-      <section className="max-w-5xl mx-auto px-4 mb-20">
-        <h2 className="text-3xl font-bold mb-8" data-aos="fade-up">✨ Cosa faremo</h2>
+      <section className="max-w-5xl mx-auto px-4 mb-10">
+        <h2 className="font-baloo text-3xl text-gray-600 font-bold mb-8" data-aos="fade-up">
+          <FontAwesomeIcon icon={faListCheck} className="pr-2 text-orange-500"></FontAwesomeIcon>
+          Cosa faremo
+        </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-10 w-xl mx-auto my-auto">
           {[
-            '🖌️ Pittura',
-            '🏺 Argilla',
-            '🎭 Teatro',
-            '📸 Foto',
-            '✂️ Collage',
-            '🎵 Musica'
+            { icon: faPaintbrush, text: 'Disegno', color: 'text-orange-300', bgColor: 'border-orange-300' },
+            { icon: faMusic, text: 'Musica', color: 'text-pink-400', bgColor: 'border-pink-400'},
+            { icon: faFootball, text: 'Giochi', color: 'text-teal-400', bgColor: 'border-teal-400'},
+            { icon: faPaintbrush, text: 'Disegno 2', color: 'text-orange-300', bgColor: 'border-orange-300' },
+            { icon: faMusic, text: 'Musica 2', color: 'text-pink-400', bgColor: 'border-pink-400'},
+            { icon: faFootball, text: 'Giochi 2', color: 'text-teal-400', bgColor: 'border-teal-400'}
           ].map((a, i) => (
-            <div key={i} data-aos="zoom-in" className="bg-white p-6 rounded-2xl shadow hover:-translate-y-2 transition">
-              {a}
+            <div key={i} data-aos="zoom-in" className={`bg-white p-6 rounded-2xl shadow flex justify-center align-middle items-center  border-2 ${a.bgColor} hover:-translate-y-2 transition h-30`}>
+              <FontAwesomeIcon icon={a.icon} className={`${a.color} pr-2`}></FontAwesomeIcon>
+              <span className="font-sans">{a.text}</span>
             </div>
           ))}
         </div>
@@ -83,7 +86,7 @@ export default function Home() {
         href="/info"
         onClick={(e) => handleAnchorClick(e, '/info')}
         className="
-            ml-2 font-['Nunito'] font-extrabold text-[0.88rem]
+            ml-2 font-extrabold text-[0.88rem]
             text-white px-5 py-[9px] rounded-full
             bg-gradient-to-r from-[#FF6B35] to-[#FF4D8D]
             shadow-[0_2px_2px_rgba(255,107,53,0.35)]
@@ -98,13 +101,12 @@ export default function Home() {
             Info
           </span>
         </a>
-        {/* <i class="fa-solid fa-circle-info"></i> */}
         {/* CTA */}
         <a
         href="/register"
         onClick={(e) => handleAnchorClick(e, '/register')}
         className="
-            ml-2 font-['Nunito'] font-extrabold text-[0.88rem]
+            ml-2 font-extrabold text-[0.88rem]
             text-white px-5 py-[9px] rounded-full
             bg-gradient-to-r from-[#FF6B35] to-[#FF4D8D]
             shadow-[0_2px_2px_rgba(255,107,53,0.35)]

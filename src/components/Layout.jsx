@@ -12,8 +12,10 @@ export default function Layout({ children }) {
         AOS.refresh();
     }, [location.pathname]);
 
+    const isHome = location.pathname === '/';
+
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className={`flex flex-col min-h-screen ${!isHome ? 'bg-amber-50' : ''}`}>
             <ScrollToTop />
             <Navbar />
             <main className='flex-1 min-h-screen'>{<Outlet />}</main>

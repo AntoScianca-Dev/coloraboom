@@ -1,12 +1,14 @@
-
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { supabase } from '../supabaseClient'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHandshakeAlt } from '@fortawesome/free-solid-svg-icons';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+
 
 // ── SKELETON ─────────────────────────────────
 function SkeletonCard() {
@@ -94,8 +96,9 @@ export default function SponsorCarousel() {
 
             {/* Header */}
             <div className="flex items-end justify-between mb-8 flex-wrap gap-3">
-            <h2 className="font-['Baloo_2'] font-extrabold text-[clamp(1.8rem,4vw,2.6rem)] text-[#2D2D2D] flex items-center gap-3 leading-tight">
-                <span>🤝</span> I nostri sponsor
+            <h2 className="font-baloo font-extrabold text-3xl text-gray-600 flex items-center gap-3 leading-tight">
+                <FontAwesomeIcon icon={faHandshakeAlt} className='text-orange-500'></FontAwesomeIcon>
+                I nostri sponsor
             </h2>
             {!loading && !error && sponsors.length > 0 && (
                 <span className="font-['Nunito'] text-sm text-[#aaa] font-semibold">
