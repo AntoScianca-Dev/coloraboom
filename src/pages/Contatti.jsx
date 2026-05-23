@@ -173,7 +173,7 @@ export default function Contatti() {
             </div>
         </section>
 
-        <section className="max-w-5xl mx-auto px-6 pb-20 bg-orange-100 p-8 rounded-3xl shadow shadow-gray-400 mb-5">
+        <section className="max-w-7xl mx-auto px-6 pb-20 bg-orange-100 p-8 rounded-3xl shadow shadow-gray-400 mb-5">
             <div className="max-w-5xl mx-auto px-6 pb-20 space-y-20">
 
                 {/* ── CONTATTI ── */}

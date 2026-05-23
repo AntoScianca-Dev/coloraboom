@@ -189,7 +189,7 @@ const TIER_CONFIG = {
         </section>
 
         {/* ── SPONSORS ── */}
-        <section className="max-w-5xl mx-auto px-6 pb-20 bg-orange-100 p-8 rounded-3xl shadow shadow-gray-400 mb-5">
+        <section className="max-w-7xl mx-auto px-6 pb-20 bg-orange-100 p-8 rounded-3xl shadow shadow-gray-400 mb-5">
             <p className="font-baloo text-2xl">
                 ColoraBoom! è possibile grazie al prezioso contributo di questi straordinari partner.
                 Grazie a loro i bambini possono vivere un'esperienza indimenticabile.

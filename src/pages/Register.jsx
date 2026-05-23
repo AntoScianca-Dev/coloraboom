@@ -65,7 +65,7 @@ export default function Register() {
       Iscriviti ora!</h2>
       
       {/* FORM */}
-      <section className="max-w-5xl mx-auto px-4 pb-20">
+      <section className="max-w-7xl mx-auto px-4 pb-20">
         {!success ? (
           <div className="bg-orange-100 p-8 rounded-3xl shadow shadow-gray-400" data-aos="fade-up">
             <h2 className='font-baloo text-2xl pb-5'>Compila il modulo</h2>
