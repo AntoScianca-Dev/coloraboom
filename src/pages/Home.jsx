@@ -35,7 +35,7 @@ export default function Home() {
       {/* INFO */}
       <div className="flex flex-wrap justify-center gap-4 px-4 mb-16">
         {[
-          { icon: faCalendarDays, text: '13–14 Settembre', color: 'text-orange-300', bgColor: 'border-orange-300' },
+          { icon: faCalendarDays, text: '6 Settembre 2026', color: 'text-orange-300', bgColor: 'border-orange-300' },
           { icon: faClock, text: '9:00 – 17:00', color: 'text-pink-400', bgColor: 'border-pink-400'},
           { icon: faMapPin, text: 'Corso Dante, Molfetta', color: 'text-teal-400', bgColor: 'border-teal-400'}
         ].map((item, i) => (

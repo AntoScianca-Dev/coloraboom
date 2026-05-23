@@ -56,7 +56,7 @@ function SponsorCard({ sponsor }) {
         )}
 
         <span className="
-            font-['Baloo_2'] font-bold text-[0.9rem] text-[#2D2D2D]
+            font-baloo font-bold text-[0.9rem] text-[#2D2D2D]
             text-center leading-tight line-clamp-2
             transition-colors duration-200 group-hover:text-[#FF6B35]
         ">
@@ -101,7 +101,7 @@ export default function SponsorCarousel() {
                 I nostri sponsor
             </h2>
             {!loading && !error && sponsors.length > 0 && (
-                <span className="font-['Nunito'] text-sm text-[#aaa] font-semibold">
+                <span className="text-sm text-gray-400 font-semibold">
                 {sponsors.length} partner ci supportano
                 </span>
             )}
@@ -116,7 +116,7 @@ export default function SponsorCarousel() {
 
             {/* Error */}
             {error && (
-            <p className="font-['Nunito'] text-[#888] text-sm text-center py-8">
+            <p className=" text-[#888] text-sm text-center py-8">
                 Impossibile caricare gli sponsor.{' '}
                 <button onClick={load} className="text-[#FF6B35] font-bold hover:underline">
                 Riprova →
@@ -126,7 +126,7 @@ export default function SponsorCarousel() {
 
             {/* Empty */}
             {!loading && !error && sponsors.length === 0 && (
-            <p className="font-['Nunito'] text-[#888] text-sm text-center py-8">
+            <p className="text-[#888] text-sm text-center py-8">
                 Vuoi diventare il primo sponsor?{' '}
                 <a href="mailto:info@coloraboom.it" className="text-[#FF6B35] font-bold hover:underline">
                 Scrivici →
@@ -173,7 +173,7 @@ export default function SponsorCarousel() {
             )}
 
             {!loading && (
-            <p className="text-center mt-4 font-['Nunito'] text-sm text-[#aaa]">
+            <p className="text-center mt-4 text-sm text-[#aaa]">
                 Vuoi diventare sponsor?{' '}
                 <a href="mailto:info@coloraboom.it?subject=Richiesta%20Sponsorizzazione&body=Salve%2C%20vorrei%20informazioni%20per%20diventare%20sponsor%20di%20ColoraBoom!" className="text-[#FF6B35] font-bold hover:underline">
                 Contattaci →

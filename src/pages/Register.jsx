@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons/faTriangleExclamation';
 
 export default function Register() {
   const [form, setForm] = useState({})
@@ -19,7 +20,7 @@ export default function Register() {
     if (!form.cognome_genitore) err.cognome_genitore = 'Richiesto'
     if (!form.telefono) err.telefono = 'Richiesto'
     if (!form.email) err.email = 'Richiesto'
-    if (!form.privacy) err.privacy = 'Richiesto'
+    if (form.privacy !== true) err.privacy = 'Devi accettare la privacy policy'
     return err
   }
 
@@ -59,14 +60,14 @@ export default function Register() {
 
   return (
     <>
-      <h2 className=' text-3xl font-baloo font-bold text-center text-gray-600 mt-10 pb-3'>
+      <h2 className='text-4xl font-baloo font-bold text-center text-gray-600 mt-10 pb-3'>
       <FontAwesomeIcon icon={faPenToSquare} className='text-orange-500 pr-2'></FontAwesomeIcon>
       Iscriviti ora!</h2>
       
       {/* FORM */}
       <section className="max-w-5xl mx-auto px-4 pb-20">
         {!success ? (
-          <div className="bg-orange-100 p-8 rounded-3xl shadow shadow-amber-200" data-aos="fade-up">
+          <div className="bg-orange-100 p-8 rounded-3xl shadow shadow-gray-400" data-aos="fade-up">
             <h2 className='font-baloo text-2xl pb-5'>Compila il modulo</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <section className='shadow p-5 rounded-2xl shadow-gray-800'>
@@ -158,12 +159,22 @@ export default function Register() {
                   </div>
                 </section>
 
-                <section className='shadow py-5 px-15 rounded-2xl shadow-gray-800 flex gap-5'>
-                  <input className='scale-200' type="checkbox" name="privacy" onChange={handleChange} />
-                  <label className="flex gap-2 text-gray-600 font-sans" htmlFor="privacy">
-                      Acconsento al trattamento dei dati personali ai sensi del GDPR per la gestione
-                      dell'iscrizione a ColoraBoom! I dati non saranno ceduti a terzi.
-                  </label>
+                <section className='shadow py-5 px-5 md:px-15 rounded-2xl shadow-gray-800 flex flex-col gap-5'>
+                  <div className='flex flex-col gap-5 md:flex-row'>
+                    <input className='scale-200' type="checkbox" name="privacy" onChange={handleChange} />
+                    <label className="flex gap-2 text-gray-600 font-sans" htmlFor="privacy">
+                        Acconsento al trattamento dei dati personali ai sensi del GDPR per la gestione
+                        dell'iscrizione a ColoraBoom! I dati non saranno ceduti a terzi.
+                    </label>
+                  </div>
+
+                  {/* Messaggio errore privacy */}
+                  {errors.privacy && (
+                    <p className="text-red-500 text-sm flex items-center gap-1">
+                      <FontAwesomeIcon icon={faTriangleExclamation} className="text-xs" />
+                      Devi accettare la privacy policy per procedere
+                    </p>
+                  )}
                 </section>
 
                 <div className='flex justify-center'>
@@ -187,6 +198,14 @@ export default function Register() {
           <div class="shadow py-5 px-15 rounded-2xl shadow-gray-800 flex flex-col gap-5" id="successMsg">
             <h3 className='text-green-400 font-baloo font-bold text-2xl text-shadow-2xs'>Iscrizione ricevuta!</h3>
             <p className='text-xl'>Ci vediamo a settembre per un'esperienza indimenticabile.</p>
+
+            {/* Barra countdown */}
+            <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-[#FF6B35] to-[#FF4D8D] rounded-full"
+                style={{ animation: 'shrink 10s linear forwards' }}
+              />
+            </div>
           </div>
         )}
       </section>

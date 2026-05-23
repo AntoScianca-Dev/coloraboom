@@ -1,6 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons/faCalendar';
+import { faMapPin } from '@fortawesome/free-solid-svg-icons/faMapPin';
+import { faMailBulk } from '@fortawesome/free-solid-svg-icons/faMailBulk';
+import { faVoicemail } from '@fortawesome/free-solid-svg-icons/faVoicemail';
+import { faMailchimp } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 
 const LINKS_PUBBLICI = [
     { label: "Home",  to: '/' },
@@ -30,7 +36,7 @@ export default function Footer() {
             >
               <span className="text-3xl transition-transform duration-300 group-hover:rotate-12">🎨</span>
               <span
-              className="font-['Baloo_2'] font-extrabold text-3xl leading-none tracking-tight text-orange-500"
+              className="font-extrabold text-2xl leading-none tracking-tight text-orange-500"
               style={{ letterSpacing: '0.001em' }}
               >
               Colora
@@ -40,14 +46,14 @@ export default function Footer() {
                   <span className="text-[#888]">!</span>
               </span>
             </NavLink>
-            <p className="font-['Nunito'] text-sm text-[#888] leading-relaxed max-w-[220px]">
-              Il laboratorio creativo dove ogni bambino diventa artista. 🖌️
+            <p className="text-sm text-[#888] leading-relaxed max-w-[220px]">
+              Il laboratorio creativo dove ogni bambino diventa artista.
             </p>
           </div>
 
           {/* NAV LINKS */}
           <div className="flex flex-col gap-3">
-            <h3 className="font-['Baloo_2'] font-bold text-[0.7rem] uppercase tracking-[2px] text-pink-500 mb-1">
+            <h3 className="font-baloo font-bold text-[0.7rem] uppercase tracking-[2px] text-pink-500 mb-1">
               Navigazione
             </h3>
             {LINKS_PUBBLICI.map(({ label, to }) => (
@@ -55,7 +61,7 @@ export default function Footer() {
                 key={to}
                 to={to}
                 className={({ isActive }) => `
-                  font-['Nunito'] font-semibold text-sm w-fit
+                  font-semibold text-sm w-fit
                   transition-all duration-200 relative group
                   ${isActive ? 'text-[#FF6B35]' : 'text-[#888] hover:text-white'}
                 `}
@@ -76,7 +82,7 @@ export default function Footer() {
             <NavLink
               to="/register"
               className="
-                mt-2 inline-block font-['Nunito'] font-extrabold text-sm
+                mt-2 inline-block font-extrabold text-sm
                 text-white px-5 py-2.5 rounded-full w-fit
                 bg-gradient-to-r from-[#FF6B35] to-[#FF4D8D]
                 shadow-[0_4px_16px_rgba(255,107,53,0.3)]
@@ -94,23 +100,23 @@ export default function Footer() {
 
           {/* CONTATTI */}
           <div className="flex flex-col gap-3">
-            <h3 className="font-['Baloo_2'] font-bold text-[0.7rem] uppercase tracking-[2px] text-pink-500 mb-1">
+            <h3 className="font-baloo font-bold text-[0.7rem] uppercase tracking-[2px] text-pink-500 mb-1">
               Contatti
             </h3>
             <a
               href="mailto:info@coloraboom.it"
-              className="font-['Nunito'] text-sm text-[#888] hover:text-[#FF6B35] transition-colors duration-200 flex items-center gap-2 group w-fit"
+              className="text-sm text-[#888] hover:text-[#FF6B35] transition-colors duration-200 flex items-center gap-2 group w-fit"
             >
-              <span className="text-base transition-transform duration-200 group-hover:-rotate-12">✉️</span>
+              <FontAwesomeIcon icon={faEnvelope} className="text-teal-600 text-xl"/>
               info@coloraboom.it
             </a>
-            <div className="font-['Nunito'] text-sm text-[#888] flex items-center gap-2">
-              <span className="text-base">📍</span>
-              Centro Civico, Via Roma 12
+            <div className="text-sm text-[#888] flex items-center gap-2">
+              <FontAwesomeIcon icon={faMapPin} className="text-teal-600 text-xl" />
+              Corso Dante 13, Molfetta (BA)
             </div>
-            <div className="font-['Nunito'] text-sm text-[#888] flex items-center gap-2">
-              <span className="text-base">📅</span>
-              13–14 Settembre 2025
+            <div className="text-sm text-[#888] flex items-center gap-2">
+              <FontAwesomeIcon icon={faCalendar} className="text-teal-600 text-xl" />
+              6 Settembre 2025
             </div>
           </div>
 
@@ -120,7 +126,7 @@ export default function Footer() {
         <div className="h-px bg-gradient-to-r from-transparent via-[#2e2e3a] to-transparent mb-6" />
 
         {/* ── BOTTOM BAR ── */}
-        <div className="text-center text-[#888] font-['Nunito'] text-xs">
+        <div className="text-center text-[#888] text-xs">
           <p>
             © {year} <span className="text-[#FF6B35] font-bold">Antonia Sciancalepore </span> — Tutti i diritti riservati
           </p>

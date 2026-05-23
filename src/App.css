@@ -13,3 +13,8 @@
         font-family: var(--font-sans);
     }
 }
+
+@keyframes shrink {
+    from { width: 100%; }
+    to   { width: 0%; }
+}

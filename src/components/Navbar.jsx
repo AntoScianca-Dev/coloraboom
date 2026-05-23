@@ -67,7 +67,7 @@ export default function Navbar() {
                     >
                         <span className="text-2xl transition-transform duration-300 group-hover:rotate-12">🎨</span>
                         <span
-                        className="font-['Baloo_2'] font-extrabold text-[1.55rem] leading-none tracking-tight text-orange-500"
+                        className="font-extrabold text-[1.55rem] leading-none tracking-tight text-orange-500"
                         style={{ letterSpacing: '-0.04em' }}
                         >
                         Colora
@@ -84,7 +84,7 @@ export default function Navbar() {
                             <NavLink
                                 to={href}
                                 className={({ isActive }) => `
-                                    font-['Nunito'] font-bold text-[0.88rem] tracking-wide
+                                    font-bold text-[0.88rem] tracking-wide
                                     px-4 py-2 rounded-full transition-all duration-200
                                     ${isActive
                                     ? 'bg-orange-50 text-[#FF6B35]'
@@ -101,7 +101,7 @@ export default function Navbar() {
                         href="/register"
                         onClick={(e) => handleAnchorClick(e, '/register')}
                         className="
-                            ml-2 font-['Nunito'] font-extrabold text-[0.88rem]
+                            ml-2 font-extrabold text-[0.88rem]
                             text-white px-5 py-[9px] rounded-full
                             bg-gradient-to-r from-[#FF6B35] to-[#FF4D8D]
                             shadow-[0_4px_16px_rgba(255,107,53,0.35)]

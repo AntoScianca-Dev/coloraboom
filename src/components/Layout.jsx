@@ -12,10 +12,14 @@ export default function Layout({ children }) {
         AOS.refresh();
     }, [location.pathname]);
 
-    const isHome = location.pathname === '/';
-
     return (
-        <div className={`flex flex-col min-h-screen ${!isHome ? 'bg-amber-50' : ''}`}>
+        <div >
+            {/* BLOBS */}
+            <div className="fixed inset-0 -z-10 overflow-hidden">
+                <div className="absolute w-[400px] h-[400px] bg-yellow-300 opacity-20 blur-3xl rounded-full  top-[-100px] left-[-100px]" />
+                <div className="absolute w-[300px] h-[300px] bg-pink-400 opacity-20 blur-3xl rounded-full  top-[30%] right-[-80px]" />
+                <div className="absolute w-[250px] h-[250px] bg-teal-400 opacity-20 blur-3xl rounded-full  bottom-[10%] left-[20%]" />
+            </div>
             <ScrollToTop />
             <Navbar />
             <main className='flex-1 min-h-screen'>{<Outlet />}</main>
