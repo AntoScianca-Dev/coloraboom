@@ -111,12 +111,12 @@ export default function Footer() {
               info@coloraboom.it
             </a>
             <div className="text-sm text-[#888] flex items-center gap-2">
-              <FontAwesomeIcon icon={faMapPin} className="text-teal-600 text-xl" />
-              Corso Dante 13, Molfetta (BA)
-            </div>
-            <div className="text-sm text-[#888] flex items-center gap-2">
               <FontAwesomeIcon icon={faCalendar} className="text-teal-600 text-xl" />
               6 Settembre 2025
+            </div>
+            <div className="text-sm text-[#888] flex items-center gap-2">
+              <FontAwesomeIcon icon={faMapPin} className="text-teal-600 text-xl" />
+              Corso Dante 13, Molfetta (BA)
             </div>
           </div>
 

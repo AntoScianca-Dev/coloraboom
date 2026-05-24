@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faPen,faUserShield  } from '@fortawesome/free-solid-svg-icons';
+import { supabase } from '../supabaseClient';
+
 
 const links = [
     { label: "Home",  href: '/'    },
@@ -10,11 +12,28 @@ const links = [
     { label: 'Contatti',   href: '/contatti'   },
 ];
 
+
 export default function Navbar() {
     const [scrolled,     setScrolled]     = useState(false);
     const [menuOpen,     setMenuOpen]     = useState(false);
     const [activeAnchor, setActiveAnchor] = useState('');
+    const [user,         setUser]         = useState(null);
     const location = useLocation();
+    
+    // ── Ascolta il cambio di sessione Supabase ──────────────────────────────
+    useEffect(() => {
+        // Legge la sessione attuale al mount
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setUser(session?.user ?? null);
+        });
+
+        // Si aggiorna in tempo reale su login / logout
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(
+            (_event, session) => setUser(session?.user ?? null)
+        );
+
+        return () => subscription.unsubscribe();
+    }, []);
 
     // Rileva scroll per effetto glassmorphism
     useEffect(() => {
@@ -77,6 +96,25 @@ export default function Navbar() {
                             <span className="text-gray-600">!</span>
                         </span>
                     </NavLink>
+
+                     {/* ── ICONA UTENTE (solo se loggato) ── */}
+                        {user && (
+                            <NavLink
+                                to="/admin"          // ← cambia con la tua rotta protetta
+                                title={user.email}
+                                className="
+                                    ml-1 flex items-center justify-center
+                                    w-9 h-9 rounded-full
+                                    bg-gradient-to-br from-[#FF6B35] to-[#FF4D8D]
+                                    text-white shadow-[0_4px_12px_rgba(255,107,53,0.35)]
+                                    hover:shadow-[0_6px_20px_rgba(255,107,53,0.5)]
+                                    hover:-translate-y-0.5
+                                    transition-all duration-200
+                                "
+                            >
+                                <FontAwesomeIcon icon={faUserShield} className="text-sm" />
+                            </NavLink>
+                        )}
 
                     {/* ── DESKTOP LINKS ── */}
                     <div className="hidden md:flex items-center gap-1">

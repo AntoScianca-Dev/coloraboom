@@ -108,7 +108,7 @@ export default function Register() {
                       <select className="w-full p-3 border rounded-xl bg-amber-50 h-12" id="evento" name="evento" onChange={handleChange} required>
                         <option value="">Seleziona evento</option>
                         <option>Mattino</option>
-                        <option>Pomeriggio</option>
+                        <option>Serale</option>
                         <option>Entrambi</option>
                       </select>
                       {errors.evento && <p className="text-red-500 text-sm">{errors.evento}</p>}
