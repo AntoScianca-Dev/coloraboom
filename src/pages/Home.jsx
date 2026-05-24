@@ -63,7 +63,7 @@ export default function Home() {
           Cosa faremo
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-10 w-xl mx-auto my-auto">
+        <div className="grid md:grid-cols-3 gap-10 mx-auto my-auto">
           {[
             { icon: faPaintbrush, text: 'Disegno', color: 'text-orange-300', bgColor: 'border-orange-300' },
             { icon: faMusic, text: 'Musica', color: 'text-pink-400', bgColor: 'border-pink-400'},
