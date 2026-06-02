@@ -5,7 +5,7 @@
 
 @theme {
     --font-sans: 'Nunito', sans-serif;
-    --font-baloo: 'Baloo 2', cursive;
+    --font-baloo: 'Baloo 2', 'Trebuchet MS', 'Arial Rounded MT Bold', sans-serif;
 }
 
 @layer base {

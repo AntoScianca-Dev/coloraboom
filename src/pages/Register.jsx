@@ -47,13 +47,19 @@ export default function Register() {
     if (error) {
       alert(error.message)
     } else {
+      
       setSuccess(true)
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
 
       setTimeout(() => {
         setSuccess(false)
         setForm({})
         setErrors({})
-      }, 10000)
+      }, 5000)
     }
   }
 
@@ -195,7 +201,7 @@ export default function Register() {
               </form>
           </div>
         ) : (
-          <div class="shadow py-5 px-15 rounded-2xl shadow-gray-800 flex flex-col gap-5" id="successMsg">
+          <div className="shadow py-5 px-15 rounded-2xl shadow-gray-800 flex flex-col gap-5" id="successMsg">
             <h3 className='text-green-400 font-baloo font-bold text-2xl text-shadow-2xs'>Iscrizione ricevuta!</h3>
             <p className='text-xl'>Ci vediamo a settembre per un'esperienza indimenticabile.</p>
 
@@ -203,7 +209,7 @@ export default function Register() {
             <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-[#FF6B35] to-[#FF4D8D] rounded-full"
-                style={{ animation: 'shrink 10s linear forwards' }}
+                style={{ animation: 'shrink 5s linear forwards' }}
               />
             </div>
           </div>

@@ -6,7 +6,8 @@ import {
   faUsers, faHandshakeAlt, faRightFromBracket,
   faRefresh, faPlus, faTrash, faToggleOn, faToggleOff,
   faMagnifyingGlass, faFilePdf,
-  faCheck, faXmark
+  faCheck, faXmark,
+  faTrashCan
 } from '@fortawesome/free-solid-svg-icons';
 
 // ═══════════════════════════════════════════
@@ -140,6 +141,30 @@ function IscrizioniSection() {
       .order('created_at', { ascending: false });
     if (!error) setData(rows || []);
     setLoading(false);
+  };
+  
+  const handleDelete = async (id) => {
+    const ok = window.confirm(
+      "Sei sicuro di voler eliminare questo iscritto?"
+    );
+
+    if (!ok) return;
+
+    try {
+      const { error } = await supabase
+        .from('iscrizioni')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+
+      // ricarica i dati reali dal database
+      await load();
+
+    } catch (err) {
+      console.error('Errore eliminazione:', err);
+      alert('Errore durante l\'eliminazione: ' + err.message);
+    }
   };
 
   useEffect(() => { load(); }, []);
@@ -351,13 +376,27 @@ function IscrizioniSection() {
                           {r.email}
                         </a>
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 flex justify-between">
                         {/* Serale puro → nessun tag pagamento */}
                         {hasPagamento(r)
                           ? <TagPagato pagato={r.pagato} id={r.id} onToggle={togglePagato} />
                           : <span className="text-[0.7rem] font-mono" style={{ color: '#3a3a4a' }}>—</span>
                         }
+
+                        <button
+                          onClick={() => handleDelete(r.id)}
+                          className="text-xs px-2 py-1 rounded-xl"
+                          style={{
+                            background: '#2a1a1a',
+                            border: '1px solid #442222',
+                            color: '#ff4d4d'
+                          }}
+                        >
+                          <FontAwesomeIcon icon={faTrashCan} className="text-xs" />
+                        </button>
+
                       </td>
+
                     </tr>
                   ))}
                 </tbody>
